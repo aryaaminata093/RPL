@@ -47,7 +47,7 @@ class User(db.Model):
 		self.profile_id = profile_id
 
 	def hash_password(self):
-		self.password = generate_password_hash(self.password).decode('utf8')
+		self.password = generate_password_hash(self.password)
 	
 	def check_password(self, password):
 		return check_password_hash(self.password, password)

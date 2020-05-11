@@ -13,8 +13,8 @@ api = Api(api_bp)
 api.add_resource(Landing, '/')
 api.add_resource(Signup, '/signup')
 api.add_resource(Login, '/login')
-api.add_resource(ProfileFetch, '/profile')
-api.add_resource(InputProfile, '/profile/add')
+api.add_resource(ProfileFetch, '/profile') #show profile for debug
+api.add_resource(InputProfile, '/profile/add') #add profile for debug
 api.add_resource(ProfileFetchUser, '/profile/user')
 
 
