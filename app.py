@@ -1,13 +1,25 @@
-from flask import Blueprint
+from flask import Blueprint, redirect, url_for
 from flask_restful import Api
-from resources.Landing import Landing
 from resources.Auth import Signup, Login
+from resources.Landing import Landing
+from resources.Profile import ProfileFetch, InputProfile, ProfileFetchUser
 
 
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 
+
 # Route
 api.add_resource(Landing, '/')
 api.add_resource(Signup, '/signup')
 api.add_resource(Login, '/login')
+api.add_resource(ProfileFetch, '/profile')
+api.add_resource(InputProfile, '/profile/add')
+api.add_resource(ProfileFetchUser, '/profile/user')
+
+
+api_index = Blueprint('index', __name__)
+@api_index.route('/', methods=['GET'])
+def index():
+	return redirect(url_for('api.landing'))
+

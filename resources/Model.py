@@ -8,6 +8,25 @@ ma = Marshmallow()
 db = SQLAlchemy()
 
 
+class Profile(db.Model):
+	__tablename__ = 'Profiles'
+
+	id = db.Column(db.Integer, primary_key=True)
+	nama = db.Column(db.String(25), nullable=False)
+	tempat_lahir = db.Column(db.String(20), nullable=False)
+	tanggal_lahir = db.Column(db.Date, nullable=False)
+	jenis_kelamin = db.Column(db.String(1), nullable=False)
+	gol_darah = db.Column(db.String(1), nullable=False)
+	alamat = db.Column(db.String(100), nullable=False)
+	creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
+
+	def __init__(self, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, gol_darah, alamat):
+		self.nama = nama
+		self.tempat_lahir = tempat_lahir
+		self.tanggal_lahir = tanggal_lahir
+		self.jenis_kelamin = jenis_kelamin
+		self.gol_darah = gol_darah
+		self.alamat = alamat
 
 class User(db.Model):
 	"""docstring for User"""
@@ -16,12 +35,16 @@ class User(db.Model):
 	username = db.Column(db.String(80), unique=True, nullable=False)
 	email = db.Column(db.String(120), unique=True, nullable = False)
 	password = db.Column(db.String(80), unique=True, nullable=False)
+	profile_id = db.Column(db.Integer, db.ForeignKey('Profiles.id', ondelete='CASCADE'), nullable=False)
+	profile = db.relationship('Profile', backref=db.backref('Users', uselist=False))
+
 	creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
 	
-	def __init__(self, username, email, password):
+	def __init__(self, username, email, password, profile_id):
 		self.username = username
 		self.email = email
 		self.password = password
+		self.profile_id = profile_id
 
 	def hash_password(self):
 		self.password = generate_password_hash(self.password).decode('utf8')
@@ -31,11 +54,20 @@ class User(db.Model):
 
 class UserSchema(ma.Schema):
 	id = fields.Integer()
-	username = fields.String(required=True)
+	username = fields.String(required=True, validate=validate.Length(3))
 	email = fields.Email(required = True)
-	password = fields.String(required=True)
+	password = fields.String(required=True, validate=validate.Length(8))
 	creation_date = fields.DateTime()
 
+class ProfileSchema(ma.Schema):
+	id = fields.Integer()
+	nama = fields.String(required=True)
+	tempat_lahir = fields.String(required=True)
+	tanggal_lahir = fields.Date(required=True)
+	jenis_kelamin = fields.String(required=True, validate=validate.Length(min = 1, max = 1))
+	gol_darah = fields.String(required=True, validate=validate.Length(min = 1, max = 1))
+	alamat = fields.String(required = True)
+	
 
 
 # class Comment(db.Model):

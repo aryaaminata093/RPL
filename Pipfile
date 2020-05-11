@@ -17,6 +17,7 @@ marshmallow = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 flask-jwt-extended = "*"
+flask-seeder = "*"
 
 [requires]
 python_version = "2.7"
