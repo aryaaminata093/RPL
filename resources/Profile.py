@@ -2,7 +2,7 @@ import datetime
 from flask import request, Response
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from .Model import db, Profile, ProfileSchema
+from .Model import db, Profile, ProfileSchema, User
 
 # class Signup(Resource):
 # 	def post(self):
@@ -35,8 +35,9 @@ class ProfileFetchUser(Resource):
 	@jwt_required
 	def get(self):
 		user_id = get_jwt_identity()
-		profile = Profile.query.filter_by(id=user_id).first()
-		# profile = Profile.query.all()
+		profile = User.query.filter_by(id=user_id).first()
+		profile_id = profile.profileId
+		profile = Profile.query.filter_by(id=profile_id).first()
 		profile = ProfileSchema().dump(profile).data
 		# profile = ProfileSchema(many=True).dump(profile).data
 

@@ -8,6 +8,40 @@ ma = Marshmallow()
 db = SQLAlchemy()
 
 
+# USER
+class User(db.Model):
+	"""docstring for User"""
+	__tablename__ = 'Users'
+	id = db.Column(db.Integer, primary_key=True)
+	username = db.Column(db.String(80), unique=True, nullable=False)
+	email = db.Column(db.String(120), unique=True, nullable = False)
+	password = db.Column(db.String(80), unique=True, nullable=False)
+	profileId = db.Column(db.Integer, db.ForeignKey('Profiles.id'), nullable=False, unique = True)
+	profile = db.relationship('Profile', backref=db.backref('Users', uselist=False))
+
+	creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
+	
+	def __init__(self, username, email, password, profileId):
+		self.username = username
+		self.email = email
+		self.password = password
+		self.profileId = profileId
+
+	def hash_password(self):
+		self.password = generate_password_hash(self.password)
+	
+	def check_password(self, password):
+		return check_password_hash(self.password, password)
+
+class UserSchema(ma.Schema):
+	id = fields.Integer()
+	username = fields.String(required=True, validate=validate.Length(3))
+	email = fields.Email(required = True)
+	password = fields.String(required=True, validate=validate.Length(8))
+	profileId = fields.Integer(required=True)
+	creation_date = fields.DateTime()
+
+# PROFILE
 class Profile(db.Model):
 	__tablename__ = 'Profiles'
 
@@ -28,36 +62,6 @@ class Profile(db.Model):
 		self.gol_darah = gol_darah
 		self.alamat = alamat
 
-class User(db.Model):
-	"""docstring for User"""
-	__tablename__ = 'Users'
-	id = db.Column(db.Integer, primary_key=True)
-	username = db.Column(db.String(80), unique=True, nullable=False)
-	email = db.Column(db.String(120), unique=True, nullable = False)
-	password = db.Column(db.String(80), unique=True, nullable=False)
-	profile_id = db.Column(db.Integer, db.ForeignKey('Profiles.id', ondelete='CASCADE'), nullable=False)
-	profile = db.relationship('Profile', backref=db.backref('Users', uselist=False))
-
-	creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
-	
-	def __init__(self, username, email, password, profile_id):
-		self.username = username
-		self.email = email
-		self.password = password
-		self.profile_id = profile_id
-
-	def hash_password(self):
-		self.password = generate_password_hash(self.password)
-	
-	def check_password(self, password):
-		return check_password_hash(self.password, password)
-
-class UserSchema(ma.Schema):
-	id = fields.Integer()
-	username = fields.String(required=True, validate=validate.Length(3))
-	email = fields.Email(required = True)
-	password = fields.String(required=True, validate=validate.Length(8))
-	creation_date = fields.DateTime()
 
 class ProfileSchema(ma.Schema):
 	id = fields.Integer()

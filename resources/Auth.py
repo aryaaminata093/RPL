@@ -13,7 +13,7 @@ class Signup(Resource):
 		data, errors = UserSchema().load(json_data)
 		if errors:
 			return {"status": "error", "data": errors}, 422
-		user = User(username=json_data['username'], email=json_data['email'], password= json_data['password'], profile_id=json_data['profile_id'])
+		user = User(username=json_data['username'], email=json_data['email'], password= json_data['password'], profileId=json_data['profileId'])
 		user.hash_password()
 		db.session.add(user)
 		db.session.commit()
@@ -28,6 +28,6 @@ class Login(Resource):
 		if not authorized:
 			return {'error': 'Email or password invalid'}, 401
 
-		expires = datetime.timedelta(days=1)
+		expires = datetime.timedelta(hours=1)
 		access_token = create_access_token(identity=str(user.id), expires_delta=expires)
 		return {'token': access_token}, 200

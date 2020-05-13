@@ -32,10 +32,10 @@
 
 	</p>
 
-	<li>Sign Up from <b>/api/signup</b> througth POST with required json data : username, email, password, profile_id (cek di list semua profile)</li>
+	<li>Sign Up from <b>/api/signup</b> througth POST with required json data : username, email, password, profileId (cek di list semua profile)</li>
 	
 	<p>	<b>BUAT REGIS ADD DULU PROFILENY DI /api/profile/add</b>. <br>
-	Data username minimal 3 , password minimal 8, email harus sesuai format (example@email.com). Data profile_id sementara liat dlu di /api/profile terus masukin id ny, kalo ga ada tambahin dulu. <br><br>Data yang di send contohny : {"username": "tes_uy", "password":"aclostael_haxxor", "email":"anjay@mantap.com", "profile_id":69}<br><br>
+	Data username minimal 3 , password minimal 8, email harus sesuai format (example@email.com). Data profileId sementara liat dlu di /api/profile terus masukin id ny, kalo ga ada tambahin dulu. <br><br>Data yang di send contohny : {"username": "tes_uy", "password":"aclostael_haxxor", "email":"anjay@mantap.com", "profileId":69}<br><br>
 
 	contoh output : {
     "status": "success",
@@ -74,7 +74,7 @@ data 4 maksudny id dari userny, gw g tau mau balikin apaan wkwkw
                         ,"jenis_kelamin" : "Z"
                         ,"gol_darah" : "Y"
                         ,"alamat" : "jalan jalan jl jalanan"}'<br><br><br>
-curl http://127.0.0.1:5000/api/signup -X POST -H "Content-Type: application/json" --data '{"username": "tes_uy", "password":"aclostael_haxxor", "email":"anjay@mantap.com", "profile_id":10}'
+curl http://127.0.0.1:5000/api/signup -X POST -H "Content-Type: application/json" --data '{"username": "tes_uy", "password":"aclostael_haxxor", "email":"anjay@mantap.com", "profileId":10}'
 <br><br><br>
 curl http://127.0.0.1:5000/api/login -X POST -H "Content-Type: application/json" --data '{"password":"aclostael_haxxor", "email":"anjay@mantap.com"}'
 {
