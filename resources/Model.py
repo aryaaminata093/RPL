@@ -7,7 +7,7 @@ from flask_bcrypt import generate_password_hash, check_password_hash
 ma = Marshmallow()
 db = SQLAlchemy()
 
-
+##############################################
 # USER
 class User(db.Model):
 	"""docstring for User"""
@@ -38,6 +38,7 @@ class UserSchema(ma.Schema):
 	profileId = fields.Integer(required=True)
 	creation_date = fields.DateTime()
 
+##############################################
 # PROFILE
 class Profile(db.Model):
 	__tablename__ = 'Profiles'
@@ -69,37 +70,27 @@ class ProfileSchema(ma.Schema):
 	gol_darah = fields.String(required=True, validate=validate.Length(min = 1, max = 1))
 	alamat = fields.String(required = True)
 	
+##############################################
+# DOKTER
+class Dokter(db.Model):
+	__tablename__ = 'Dokter'
 
+	id = db.Column(db.Integer, primary_key=True)
+	
+	nama = db.Column(db.String(25), nullable=False)
+	spesialis = db.Column(db.String(20), nullable=False)
+	noTelepon = db.Column(db.String(13), nullable=False)
+	
+	creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
 
-# class Comment(db.Model):
-#     __tablename__ = 'comments'
-#     id = db.Column(db.Integer, primary_key=True)
-#     comment = db.Column(db.String(250), nullable=False)
-#     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
-#     category_id = db.Column(db.Integer, db.ForeignKey('categories.id', ondelete='CASCADE'), nullable=False)
-#     category = db.relationship('Category', backref=db.backref('comments', lazy='dynamic' ))
-
-#     def __init__(self, comment, category_id):
-#         self.comment = comment
-#         self.category_id = category_id
-
-
-# class Category(db.Model):
-#     __tablename__ = 'categories'
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(150), unique=True, nullable=False)
-
-#     def __init__(self, name):
-#         self.name = name
-
-
-# class CategorySchema(ma.Schema):
-#     id = fields.Integer()
-#     name = fields.String(required=True)
-
-
-# class CommentSchema(ma.Schema):
-#     id = fields.Integer(dump_only=True)
-#     category_id = fields.Integer(required=True)
-#     comment = fields.String(required=True, validate=validate.Length(1))
-#     creation_date = fields.DateTime()
+	def __init__(self, nama, spesialis, noTelepon ):
+		self.nama = nama
+		self.spesialis = spesialis
+		self.noTelepon = noTelepon
+		
+	
+class DokterSchema(ma.Schema):
+	id = fields.Integer()
+	nama = fields.String(required=True)
+	spesialis = fields.String(required=True)
+	noTelepon = fields.String(required=True)

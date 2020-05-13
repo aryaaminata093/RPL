@@ -62,8 +62,23 @@ data 4 maksudny id dari userny, gw g tau mau balikin apaan wkwkw
 	Contoh di CURL :<br>
 	curl http://127.0.0.1:5000/api/profile/user -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODkyMzY4MjgsIm5iZiI6MTU4OTIzNjgyOCwianRpIjoiYWMyZTY2NTYtNjcyOS00YzQ5LTk2MzUtNTVhOGI1YWNkNmU4IiwiZXhwIjoxNTg5MzIzMjI4LCJpZGVudGl0eSI6IjQiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.FDgx5VJhH0dWxdxB8goIfu3UU9q83lHuil26OvR9f7o"
 	</li>
-	
-
+	<hr>
+	<li>List semua dokter di <b>/api/dokter</b> cuman buat debugging. tinggal dibuka doang</li>
+	<hr>
+	<li>List dokter tertentu di <b>/api/dokter/fetch</b> cuman buat debugging. tinggal dibuka doang</li>
+	<p><b>DATA yang dibutuhin</b> : data<br>
+		Bisa nerima nama atau spesialisnya<br><br>
+		Contoh json : '{"data":"cinta"}', '{"data":"habib"}'<br>
+		Contoh curl : curl http://127.0.0.1:5000/api/dokter/fetch -X "GET" -H 'Content-Type: application/json' --data '{"data":"habib"}' 
+	</p>
+	<hr>
+	<li>Add dokter baru di <b>/api/dokter/add</b> cuman buat debugging sementara</li>
+	<p>
+		<b>DATA yang dibutuhin</b> : nama, spesialis, noTelepon<br><br>
+		Contoh json : '{"nama":"habib", "spesialis":"cinta", "noTelepon":"696969"}'<br>
+		Contoh curl : curl http://127.0.0.1:5000/api/dokter/add -X "POST" -H 'Content-Type: application/json' --data '{"nama":"habib", "spesialis":"cinta", "noTelepon":696969}'
+ 
+	</p>
 </ul>
 <br>
 <br><br>
