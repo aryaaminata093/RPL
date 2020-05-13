@@ -13,7 +13,6 @@ class User(db.Model):
 	"""docstring for User"""
 	__tablename__ = 'Users'
 	id = db.Column(db.Integer, primary_key=True)
-	username = db.Column(db.String(80), unique=True, nullable=False)
 	email = db.Column(db.String(120), unique=True, nullable = False)
 	password = db.Column(db.String(80), unique=True, nullable=False)
 	profileId = db.Column(db.Integer, db.ForeignKey('Profiles.id'), nullable=False, unique = True)
@@ -21,8 +20,7 @@ class User(db.Model):
 
 	creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
 	
-	def __init__(self, username, email, password, profileId):
-		self.username = username
+	def __init__(self, email, password, profileId):
 		self.email = email
 		self.password = password
 		self.profileId = profileId
@@ -35,7 +33,6 @@ class User(db.Model):
 
 class UserSchema(ma.Schema):
 	id = fields.Integer()
-	username = fields.String(required=True, validate=validate.Length(3))
 	email = fields.Email(required = True)
 	password = fields.String(required=True, validate=validate.Length(8))
 	profileId = fields.Integer(required=True)

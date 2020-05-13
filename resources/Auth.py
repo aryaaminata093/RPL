@@ -13,7 +13,7 @@ class Signup(Resource):
 		data, errors = UserSchema().load(json_data)
 		if errors:
 			return {"status": "error", "data": errors}, 422
-		user = User(username=json_data['username'], email=json_data['email'], password= json_data['password'], profileId=json_data['profileId'])
+		user = User(email=json_data['email'], password= json_data['password'], profileId=json_data['profileId'])
 		user.hash_password()
 		db.session.add(user)
 		db.session.commit()
