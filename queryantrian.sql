@@ -1,3 +1,9 @@
+#menampilkan tabel di web
+SELECT noantrian, tglantrian, id_pasien, namapasien, id_jadwal, namadokter
+FROM rumahsakit.pasien JOIN rumahsakit.antrian ON idpasien=id_pasien
+JOIN rumahsakit.jadwal ON id_jadwal=idjadwal
+JOIN rumahsakit.dokter ON id_dokter=iddokter;
+
 #declare variabel
 SET @c := '0'; 
 
