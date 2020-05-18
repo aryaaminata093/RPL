@@ -1,103 +1,246 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
-	<title>API TESTING</title>
+
+	<title>
+	API TESTING</title>
+
 </head>
+
 <body>
-	<h1>somethingsomethingAPI</h1>
-<p>Current progress..</p>
-<ul>
+
+	<h1>
+	somethingsomethingAPI</h1>
+
+	<p>
+	Current progress..</p>
+
+	<ul>
 
 
-	<h3>NOTE : Buat semua routes (signup, login, dll) kecuali list profile user, tambahin header "Content-Type: application/json" buat ngasi tau ke api data yg di send datany json. gw bingung gmn carany biar g butuh ini wkwk</h3>
 
-	<li>Add profile baru di <b>/api/profile/add</b> cuman buat debugging sementara</li>
+		<h3>
+		NOTE : Buat semua routes (signup, login, dll) kecuali list profile user, tambahin header "Content-Type: application/json" buat ngasi tau ke api data yg di send datany json. gw bingung gmn carany biar g butuh ini wkwk</h3>
 
-	<p>Inputnya banyak wkwkw. jenis_kelamin ama gol_darah cuman nerima 1 char, format tanggal_lahir "yyyy-mm-dd", nama cuman 20 ( ato 25 lupa wkwkw) <br><br>
 
-		Contoh input: '{"nama" : "tes bin tis",tempat_lahir : "goa hantu",tanggal_lahir : "1696-4-20",jenis_kelamin : "Z",gol_darah : "Y",alamat : "jalan jalan jl jalanan"}'<br><br>
-		Contoh output : {
-    "status": "success",
-    "data": {
-        "jenis_kelamin": "Z",
-        "gol_darah": "Y",
-        "tanggal_lahir": "1696-04-20",
-        "nama": "tes bin tis",
-        "tempat_lahir": "goa hantu",
-        "alamat": "jalan jalan jl jalanan",
-        "id": 10
-    }
-}
-<hr>
+		<li>
+			Add profile baru di <b>
+			/api/profile/add</b>
+		cuman buat debugging sementara</li>
 
-	</p>
 
-	<li>Sign Up from <b>/api/signup</b> througth POST with required json data : email, password, profileId (cek di list semua profile)</li>
-	
-	<p>	<b>BUAT REGIS ADD DULU PROFILENY DI /api/profile/add</b>. <br>
-	password minimal 8, email harus sesuai format (example@email.com). Data profileId sementara liat dlu di /api/profile terus masukin id ny, kalo ga ada tambahin dulu. <br><br>Data yang di send contohny : { "password":"aclostael_haxxor", "email":"anjay@mantap.com", "profileId":69}<br><br>
+		<p>
+			Inputnya banyak wkwkw. jenis_kelamin ama gol_darah cuman nerima 1 char, format tanggal_lahir "yyyy-mm-dd", nama cuman 20 ( ato 25 lupa wkwkw) <br>
+			<br>
+
+
+			Contoh input: '{"nama" : "tes bin tis",tempat_lahir : "goa hantu",tanggal_lahir : "1696-4-20",jenis_kelamin : "Z",gol_darah : "Y",alamat : "jalan jalan jl jalanan"}'<br>
+			<br>
+
+			Contoh output : {
+			"status": "success",
+			"data": {
+			"jenis_kelamin": "Z",
+			"gol_darah": "Y",
+			"tanggal_lahir": "1696-04-20",
+			"nama": "tes bin tis",
+			"tempat_lahir": "goa hantu",
+			"alamat": "jalan jalan jl jalanan",
+			"id": 10
+		}
+	}
+	<hr>
+
+
+</p>
+
+
+<li>
+	Sign Up from <b>
+	/api/signup</b>
+througth POST with required json data : email, password, profileId (cek di list semua profile)</li>
+
+
+<p>
+	<b>
+	BUAT REGIS ADD DULU PROFILENY DI /api/profile/add</b>
+	. <br>
+
+	password minimal 8, email harus sesuai format (example@email.com). Data profileId sementara liat dlu di /api/profile terus masukin id ny, kalo ga ada tambahin dulu. <br>
+	<br>
+	Data yang di send contohny : { "password":"aclostael_haxxor", "email":"anjay@mantap.com", "profileId":69}<br>
+	<br>
+
 
 	contoh output : {
-    "status": "success",
-    "data": "4"
+	"status": "success",
+	"data": "4"
 }
 <br>
+
 data 4 maksudny id dari userny, gw g tau mau balikin apaan wkwkw
 </p>
+
 <hr>
 
-	<li>Log in from <b>/api/login</b> througth POST with required json data : email, password</li>
-	<p><b>BUAT LOGIN YA REGIS DULU BAMBANGG wkwk</b>. Ntar setelah login lu dapet token bentukny jwt buat liat profil pribadi di /api/profil/user <br><br>
-		Data yang di send contohny : <br><br>
+
+<li>
+	Log in from <b>
+	/api/login</b>
+througth POST with required json data : email, password</li>
+
+<p>
+	<b>
+	BUAT LOGIN YA REGIS DULU BAMBANGG wkwk</b>
+	. Ntar setelah login lu dapet token bentukny jwt buat liat profil pribadi di /api/profil/user <br>
+	<br>
+
+	Data yang di send contohny : <br>
+	<br>
+
 
 	contoh output : {
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODkyMzY4MjgsIm5iZiI6MTU4OTIzNjgyOCwianRpIjoiYWMyZTY2NTYtNjcyOS00YzQ5LTk2MzUtNTVhOGI1YWNkNmU4IiwiZXhwIjoxNTg5MzIzMjI4LCJpZGVudGl0eSI6IjQiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.FDgx5VJhH0dWxdxB8goIfu3UU9q83lHuil26OvR9f7o"
+	"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODkyMzY4MjgsIm5iZiI6MTU4OTIzNjgyOCwianRpIjoiYWMyZTY2NTYtNjcyOS00YzQ5LTk2MzUtNTVhOGI1YWNkNmU4IiwiZXhwIjoxNTg5MzIzMjI4LCJpZGVudGl0eSI6IjQiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.FDgx5VJhH0dWxdxB8goIfu3UU9q83lHuil26OvR9f7o"
 }
 
-	</p>
-	<hr>
-	<li>List semua profile di <b>/api/profile</b> cuman buat debugging. tinggal dibuka doang</li>
-	<hr>
-	<li>List profile user di <b>/api/profile/user</b> . carany tambah di heder header <b>"Authorization: Bearer {isi_tokennya_tanpa_kurawal/koma/dll}"</b> tanpa data apa2<br><br>	
-	Contoh di CURL :<br>
-	curl http://127.0.0.1:5000/api/profile/user -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODkyMzY4MjgsIm5iZiI6MTU4OTIzNjgyOCwianRpIjoiYWMyZTY2NTYtNjcyOS00YzQ5LTk2MzUtNTVhOGI1YWNkNmU4IiwiZXhwIjoxNTg5MzIzMjI4LCJpZGVudGl0eSI6IjQiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.FDgx5VJhH0dWxdxB8goIfu3UU9q83lHuil26OvR9f7o"
-	</li>
-	<hr>
-	<li>List semua dokter di <b>/api/dokter</b> cuman buat debugging. tinggal dibuka doang</li>
-	<hr>
-	<li>List dokter tertentu di <b>/api/dokter/fetch</b> cuman buat debugging. tinggal dibuka doang</li>
-	<p><b>DATA yang dibutuhin</b> : data<br>
-		Bisa nerima nama atau spesialisnya<br><br>
-		Contoh json : '{"data":"cinta"}', '{"data":"habib"}'<br>
-		Contoh curl : curl http://127.0.0.1:5000/api/dokter/fetch -X "GET" -H 'Content-Type: application/json' --data '{"data":"habib"}' 
-	</p>
-	<hr>
-	<li>Add dokter baru di <b>/api/dokter/add</b> cuman buat debugging sementara</li>
-	<p>
-		<b>DATA yang dibutuhin</b> : nama, spesialis, noTelepon<br><br>
-		Contoh json : '{"nama":"habib", "spesialis":"cinta", "noTelepon":"696969"}'<br>
-		Contoh curl : curl http://127.0.0.1:5000/api/dokter/add -X "POST" -H 'Content-Type: application/json' --data '{"nama":"habib", "spesialis":"cinta", "noTelepon":696969}'
- 
-	</p>
-</ul>
-<br>
-<br><br>
-<p>contoh curl :<br><br> curl http://127.0.0.1:5000/api/profile/add -X POST -H "Content-Type: application/json" --data '{
-                        "nama" : "tes bin tis" 
-                        ,"tempat_lahir" : "goa hantu"
-                        ,"tanggal_lahir" : "1696-4-20"
-                        ,"jenis_kelamin" : "Z"
-                        ,"gol_darah" : "Y"
-                        ,"alamat" : "jalan jalan jl jalanan"}'<br><br><br>
-curl http://127.0.0.1:5000/api/signup -X POST -H "Content-Type: application/json" --data '{ "password":"aclostael_haxxor", "email":"anjay@mantap.com", "profileId":10}'
-<br><br><br>
-curl http://127.0.0.1:5000/api/login -X POST -H "Content-Type: application/json" --data '{"password":"aclostael_haxxor", "email":"anjay@mantap.com"}'
-{
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODkyMzY4MjgsIm5iZiI6MTU4OTIzNjgyOCwianRpIjoiYWMyZTY2NTYtNjcyOS00YzQ5LTk2MzUtNTVhOGI1YWNkNmU4IiwiZXhwIjoxNTg5MzIzMjI4LCJpZGVudGl0eSI6IjQiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.FDgx5VJhH0dWxdxB8goIfu3UU9q83lHuil26OvR9f7o"
-<br><br><br>
+</p>
 
+<hr>
+
+<li>
+	List semua profile di <b>
+	/api/profile</b>
+cuman buat debugging. tinggal dibuka doang</li>
+
+<hr>
+
+<li>
+	List profile user di <b>
+	/api/profile/user</b>
+	. carany tambah di heder header <b>
+	"Authorization: Bearer {isi_tokennya_tanpa_kurawal/koma/dll}"</b>
+	tanpa data apa2<br>
+	<br>
+	
+	Contoh di CURL :<br>
+
+	curl http://127.0.0.1:5000/api/profile/user -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODkyMzY4MjgsIm5iZiI6MTU4OTIzNjgyOCwianRpIjoiYWMyZTY2NTYtNjcyOS00YzQ5LTk2MzUtNTVhOGI1YWNkNmU4IiwiZXhwIjoxNTg5MzIzMjI4LCJpZGVudGl0eSI6IjQiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.FDgx5VJhH0dWxdxB8goIfu3UU9q83lHuil26OvR9f7o"
+</li>
+
+<hr>
+
+<li>
+	List semua dokter di <b>
+	/api/dokter</b>
+cuman buat debugging. tinggal dibuka doang</li>
+
+<hr>
+
+<li>
+	List dokter tertentu di <b>
+	/api/dokter/fetch</b>
+cuman buat debugging. tinggal dibuka doang</li>
+
+<p>
+	<b>
+	DATA yang dibutuhin</b>
+	: data<br>
+
+	Bisa nerima nama atau spesialisnya<br>
+	<br>
+
+	Contoh json : '{"data":"cinta"}', '{"data":"habib"}'<br>
+
+	Contoh curl : curl http://127.0.0.1:5000/api/dokter/fetch -X "GET" -H 'Content-Type: application/json' --data '{"data":"habib"}' 
+</p>
+
+<hr>
+
+<li>
+	Add dokter baru di <b>
+	/api/dokter/add</b>
+cuman buat debugging sementara</li>
+
+<p>
+
+	<b>
+	DATA yang dibutuhin</b>
+	: nama, spesialis, noTelepon<br>
+	<br>
+
+	Contoh json : '{"nama":"habib", "spesialis":"cinta", "noTelepon":"696969"}'<br>
+
+	Contoh curl : curl http://127.0.0.1:5000/api/dokter/add -X "POST" -H 'Content-Type: application/json' --data '{"nama":"habib", "spesialis":"cinta", "noTelepon":696969}'
+
+</p>
+
+
+<li>
+	List semua jadwal di <b>
+	/api/jadwal</b> tinggal dibuka doang</li>
+
+<hr>
+
+<li>
+	Add jadwal baru di <b>
+	/api/jadwal/add</b></li>
+
+<p>
+
+	<b>
+	DATA yang dibutuhin</b>
+	: nama, spesialis, noTelepon<br>
+	<br>
+
+	Contoh json : '{"hari":"Senin", "jamMulai": "9:00", "jamSelesai": "11:00", "dokterId":1}'<br>
+
+	Contoh curl : curl http://127.0.0.1:5000/api/jadwal/add -X 'POST' -H 'Content-Type: application/json' --data '{"hari":"Senin", "jamMulai": "9:00", "jamSelesai": "11:00", "dokterId":1}'
 
 
 </p>
+
+
+</ul>
+
+
+
+<br>
+
+<br>
+<br>
+
+<p>
+	contoh curl :<br>
+	<br>
+	curl http://127.0.0.1:5000/api/profile/add -X POST -H "Content-Type: application/json" --data '{
+	"nama" : "tes bin tis" 
+	,"tempat_lahir" : "goa hantu"
+	,"tanggal_lahir" : "1696-4-20"
+	,"jenis_kelamin" : "Z"
+	,"gol_darah" : "Y"
+	,"alamat" : "jalan jalan jl jalanan"}'<br>
+	<br>
+	<br>
+
+	curl http://127.0.0.1:5000/api/signup -X POST -H "Content-Type: application/json" --data '{ "password":"aclostael_haxxor", "email":"anjay@mantap.com", "profileId":10}'
+	<br>
+	<br>
+	<br>
+
+	curl http://127.0.0.1:5000/api/login -X POST -H "Content-Type: application/json" --data '{"password":"aclostael_haxxor", "email":"anjay@mantap.com"}'
+	{
+		"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1ODkyMzY4MjgsIm5iZiI6MTU4OTIzNjgyOCwianRpIjoiYWMyZTY2NTYtNjcyOS00YzQ5LTk2MzUtNTVhOGI1YWNkNmU4IiwiZXhwIjoxNTg5MzIzMjI4LCJpZGVudGl0eSI6IjQiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.FDgx5VJhH0dWxdxB8goIfu3UU9q83lHuil26OvR9f7o"
+		<br>
+		<br>
+		<br>
+
+
+
+
+	</p>
+
 </body>
+
 </html>

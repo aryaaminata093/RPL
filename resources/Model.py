@@ -13,6 +13,7 @@ class User(db.Model):
 	"""docstring for User"""
 	__tablename__ = 'Users'
 	id = db.Column(db.Integer, primary_key=True)
+	
 	email = db.Column(db.String(120), unique=True, nullable = False)
 	password = db.Column(db.String(80), unique=True, nullable=False)
 	profileId = db.Column(db.Integer, db.ForeignKey('Profiles.id'), nullable=False, unique = True)
@@ -94,3 +95,34 @@ class DokterSchema(ma.Schema):
 	nama = fields.String(required=True)
 	spesialis = fields.String(required=True)
 	noTelepon = fields.String(required=True)
+
+##############################################
+# JADWAL
+
+
+class Jadwal(db.Model):
+	__tablename__ = 'Jadwal'
+
+	id = db.Column(db.Integer, primary_key=True)
+	
+	hari = db.Column(db.String(25), nullable=False)
+	jamMulai = db.Column(db.Time, nullable=False)
+	jamSelesai = db.Column(db.Time, nullable=False)
+	
+	dokterId = db.Column(db.Integer, db.ForeignKey('Dokter.id'), nullable=False)
+	dokter = db.relationship('Dokter', backref=db.backref('Jadwal'))
+
+	creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
+
+	def __init__(self, hari, jamMulai, jamSelesai, dokterId):
+		self.hari = hari
+		self.jamMulai = jamMulai
+		self.jamSelesai = jamSelesai
+		self.dokterId = dokterId
+	
+class JadwalSchema(ma.Schema):
+	id = fields.Integer()
+	hari = fields.String(required=True)
+	jamMulai = fields.Time(required=True)
+	jamSelesai = fields.Time(required=True)
+	dokterId = fields.Integer(required=True)

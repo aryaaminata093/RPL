@@ -4,6 +4,7 @@ from resources.Auth import Signup, Login
 from resources.Landing import Landing
 from resources.Profile import ProfileFetch, InputProfile, ProfileFetchUser
 from resources.Dokter import DokterFetch, InputDokter, DokterFetchPersonal
+from resources.Jadwal import JadwalFetch, InputJadwal
 
 
 api_bp = Blueprint('api', __name__)
@@ -21,6 +22,9 @@ api.add_resource(ProfileFetchUser, '/profile/user')
 api.add_resource(DokterFetch, '/dokter') #show profile for debug
 api.add_resource(InputDokter, '/dokter/add') #add profile for debug
 api.add_resource(DokterFetchPersonal, '/dokter/fetch')
+
+api.add_resource(JadwalFetch, '/jadwal')
+api.add_resource(InputJadwal, '/jadwal/add') 
 
 
 
