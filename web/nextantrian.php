@@ -6,9 +6,9 @@ if(isset($_POST['next'])){
 	$tanggal = $_POST['tanggal'];
 
 	$sql = "UPDATE rumahsakit.antrian
-			SET statusantrian = '1'
-			WHERE id_jadwal='$idjadwal' AND tglantrian='$tanggal' 
-			AND noantrian=(SELECT min(noantrian) FROM rumahsakit.antrian WHERE statusantrian='0')";
+		SET statusantrian = '1'
+		WHERE id_jadwal='$idjadwal' AND tglantrian='$tanggal' 
+		AND noantrian=(SELECT min(noantrian) FROM rumahsakit.antrian WHERE statusantrian='0')";
 	$query = mysqli_query($konek, $sql);
 
 	if( $query==TRUE ) {
