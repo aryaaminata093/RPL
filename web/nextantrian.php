@@ -5,14 +5,13 @@ if(isset($_POST['next'])){
 	$idjadwal = $_POST['idjadwal'];
 	$tanggal = $_POST['tanggal'];
 
-	$sql = "DELETE FROM rumahsakit.antrian
-			WHERE id_jadwal='$idjadwal' AND tglantrian='$tanggal'
-			ORDER BY noantrian
-			LIMIT 1";
+	$sql = "UPDATE rumahsakit.antrian
+			SET statusantrian = '1'
+			WHERE id_jadwal='$idjadwal' AND tglantrian='$tanggal' 
+			AND noantrian=(SELECT min(noantrian) FROM rumahsakit.antrian WHERE statusantrian='0')";
 	$query = mysqli_query($konek, $sql);
 
 	if( $query==TRUE ) {
-		echo "Next antrian berhasil! :)";
 		header('Location: antrian.php');
 		
 	} 
