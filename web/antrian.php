@@ -2,7 +2,6 @@
 
 <html>
 <head>
-	<link rel='icon' type='image/png' href='iconrs.png'>
 	<title>Rumah Sakit</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -11,7 +10,7 @@
 	<div class="content">
 	<header>
 		<h1>Antrian Rumah Sakit</h1>
-		<p>Web ini merupakan simulasi interface untuk pihak rumah sakit (resepsionis) untuk mengontrol antrian yang sedang berlangsung</p>
+		<p>Web ini merupakan simulasi interface pihak rumah sakit (resepsionis) untuk mengontrol antrian yang sedang berlangsung</p>
 	</header>
 
 	<form action='nextantrian.php' method='POST' >
