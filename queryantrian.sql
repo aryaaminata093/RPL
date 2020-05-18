@@ -1,4 +1,3 @@
-#menampilkan tabel di web
 SELECT noantrian, tglantrian, id_pasien, namapasien, id_jadwal, namadokter
 FROM rumahsakit.pasien JOIN rumahsakit.antrian ON idpasien=id_pasien
 JOIN rumahsakit.jadwal ON id_jadwal=idjadwal
@@ -9,18 +8,18 @@ SET @c := '0';
 
 #insert data selain noantrian
 INSERT INTO rumahsakit.antrian (tglantrian, id_pasien, id_jadwal) 
-VALUES ('2020-02-20', '1', '22');
+VALUES ('2020-02-20', '11', '31');
 
 #hitung banyak antrian yg sudah ada
-SELECT @c := count(id_pasien) FROM rumahsakit.antrian WHERE id_jadwal='22' AND tglantrian='2020-02-20';
+SELECT @c := count(id_pasien) FROM rumahsakit.antrian WHERE id_jadwal='31' AND tglantrian='2020-02-20';
 
 #isi noantrian
 UPDATE rumahsakit.antrian
 SET noantrian = IF(@c='0','1',@c)
-WHERE id_pasien = '1';
+WHERE id_pasien = '11';
 
-#next antrian - delete
-DELETE FROM rumahsakit.antrian
-WHERE id_jadwal='32' AND tglantrian='2020-02-20'
-ORDER BY noantrian
-LIMIT 1;
+#next antrian
+UPDATE rumahsakit.antrian
+SET statusantrian = '1'
+WHERE id_jadwal='$idjadwal' AND tglantrian='$tanggal' 
+AND noantrian=(SELECT min(noantrian) FROM rumahsakit.antrian WHERE statusantrian='0')
