@@ -1,4 +1,4 @@
-# DOKUMENTASI PROJEK RPL
+# LAPORAN PROJEK RPL
 ### A. Nama Aplikasi
 Nama aplikasi ini adalah …
 ### B. Nama Anggota Kelompok
