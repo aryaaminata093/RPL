@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_marginTop="60dp"
+            android:id="@+id/dok_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@mipmap/personicon" />
+
+        <LinearLayout
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/dok_image"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mdocnama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_round"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/mdocspesial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp" />
+        </LinearLayout>
+    </LinearLayout>
+        <LinearLayout
+            android:background="@drawable/bg_round"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tentukan Hari  "
+                android:textColor="@color/black"
+                android:textSize="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text=": "
+                android:textSize="20dp"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_wht_round"
+                android:id="@+id/listItem"
+                android:entries="@array/daftar_hari"
+                android:padding="15dp">
+            </Spinner>
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_makejanji"
+            android:background="@drawable/et_bg"
+            android:layout_width="123dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/colorSecond"
+            android:text="Buat"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</RelativeLayout>

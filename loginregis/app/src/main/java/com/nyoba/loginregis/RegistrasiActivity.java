@@ -18,6 +18,7 @@ import com.nyoba.loginregis.network.interfaces.RegistrasiInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.functions.Cancellable;
 
 public class RegistrasiActivity extends AppCompatActivity {
 
@@ -47,41 +48,51 @@ public class RegistrasiActivity extends AppCompatActivity {
         btn_regis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pd.setMessage("Sending Data...");
-                pd.setCancelable(false);
-                pd.show();
-
                 String snama = nama.getText().toString();
                 String semail= email.getText().toString();
                 String spassword = password.getText().toString();
+                if(snama.matches("")||semail.matches("")||spassword.matches("")){
+                    Toast.makeText(RegistrasiActivity.this, "Kolom tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                } else {
+                    pd.setMessage("Sending Data...");
+                    pd.setCancelable(false);
+                    pd.show();
 
-                Call<BaseResponse> senddata = api.registrasi(semail, snama, spassword);
-                senddata.enqueue(new Callback<BaseResponse>() {
-                    @Override
-                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                    Log.d("cek","Response :" + response.body().getSuccess());
 
-                        pd.hide();
-                        int success = response.body().getSuccess();
+                    Call<BaseResponse> senddata = api.registrasi(semail, snama, spassword);
+                    senddata.enqueue(new Callback<BaseResponse>() {
+                        @Override
+                        public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                            Log.d("cek","Response :" + response.body().getSuccess());
 
-                        if ( success == 1 ){
-                            Toast.makeText(RegistrasiActivity.this, "Registrasi Berhasil!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(RegistrasiActivity.this, "Registrasi Gagal!", Toast.LENGTH_SHORT).show();
+                            pd.hide();
+                            int success = response.body().getSuccess();
+
+                            if ( success == 1 ){
+                                Toast.makeText(RegistrasiActivity.this, "Registrasi Berhasil!", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(RegistrasiActivity.this, LoginActivity.class);
+                                startActivity(i);
+                            } else if(success == 040) {
+                                Toast.makeText(RegistrasiActivity.this, "Already Exist!", Toast.LENGTH_SHORT).show();
+                                password.getText().clear();
+                            } else {
+                                Toast.makeText(RegistrasiActivity.this, "Registrasi Gagal", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
 
-                    }
+                        @Override
+                        public void onFailure(Call<BaseResponse> call, Throwable t) {
+                            Log.d("cek","Fail : Gagal mengirim data");
+                            System.out.println("onFailure"+call);
+                            t.printStackTrace();
+                            pd.hide();
 
-                    @Override
-                    public void onFailure(Call<BaseResponse> call, Throwable t) {
-                        Log.d("cek","Fail : Gagal mengirim data");
-                        System.out.println("onFailure"+call);
-                        t.printStackTrace();
-                        pd.hide();
+                            Toast.makeText(RegistrasiActivity.this, "Error mengirim!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
 
-                        Toast.makeText(RegistrasiActivity.this, "Error mengirim!", Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         });
     }

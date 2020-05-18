@@ -6,20 +6,20 @@ public class BaseResponse {
 
     private int success;
     private String message;
-    private int id;
+    private String id;
     private String email;
     private String nama;
     private String tmptlhr;
-    private Date tgllhr;
+    private String tgllhr;
     private String alamat;
     private String jk;
     private String goldar;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,11 +47,11 @@ public class BaseResponse {
         this.tmptlhr = tmptlhr;
     }
 
-    public Date getTgllhr() {
+    public String getTgllhr() {
         return tgllhr;
     }
 
-    public void setTgllhr(Date tgllhr) {
+    public void setTgllhr(String tgllhr) {
         this.tgllhr = tgllhr;
     }
 

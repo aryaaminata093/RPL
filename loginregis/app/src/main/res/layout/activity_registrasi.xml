@@ -33,6 +33,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     <EditText
         android:id="@+id/nama"
         android:layout_width="match_parent"
+        android:background="@drawable/et_bg"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:hint="@string/nama"
@@ -42,9 +43,11 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         android:textColorHint="@color/gray" />
 
     <EditText
+        android:layout_marginTop="10dp"
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/et_bg"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:padding="16dp"
@@ -52,9 +55,11 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         android:textColorHint="@color/gray" />
 
     <EditText
+        android:layout_marginTop="10dp"
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/et_bg"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:padding="16dp"
@@ -63,6 +68,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_regist"
+        android:background="@drawable/et_bg"
         android:layout_width="123dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="150dp"

@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="420dp"
+        android:layout_width="460dp"
         android:layout_height="258dp"
         android:background="@mipmap/backgr"
         app:layout_constraintBottom_toTopOf="@+id/nav_host_fragment"

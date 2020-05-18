@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.nyoba.loginregis.home.home"
+        android:name="com.nyoba.loginregis.home"
         android:label="@string/title_home"
         tools:layout="@layout/home_fragment" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.nyoba.loginregis.janji.janji"
+        android:name="com.nyoba.loginregis.janji"
         android:label="@string/title_dashboard"
         tools:layout="@layout/janji_fragment" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.nyoba.loginregis.profile.profile"
+        android:name="com.nyoba.loginregis.profile"
         android:label="@string/title_notifications"
         tools:layout="@layout/profile_fragment" />
 </navigation>
