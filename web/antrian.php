@@ -10,7 +10,7 @@
 	<div class="content">
 	<header>
 		<h1>Antrian Rumah Sakit</h1>
-		<p>Web ini merupakan simulasi interface pihak rumah sakit (resepsionis) untuk mengontrol antrian yang sedang berlangsung</p>
+		<p>Web ini merupakan simulasi interface untuk pihak rumah sakit (resepsionis) untuk mengontrol antrian yang sedang berlangsung</p>
 	</header>
 
 	<form action='nextantrian.php' method='POST' >
@@ -32,12 +32,13 @@
 			<th>Nama Pasien</th>
 			<th>Id Jadwal</th>
 			<th>Nama Dokter</th>
+			<th>Status</th>
 		</tr>
 	</thead>
 	<tbody>
 
 		<?php
-		$sql = 'SELECT noantrian, tglantrian, id_pasien, namapasien, id_jadwal, namadokter
+		$sql = 'SELECT noantrian, tglantrian, id_pasien, namapasien, id_jadwal, namadokter, statusantrian
 				FROM rumahsakit.pasien JOIN rumahsakit.antrian ON idpasien=id_pasien
 				JOIN rumahsakit.jadwal ON id_jadwal=idjadwal
 				JOIN rumahsakit.dokter ON id_dokter=iddokter';
@@ -53,6 +54,7 @@
 			 	<td>'.$antri['namapasien'].'</td>
 			 	<td>'.$antri['id_jadwal'].'</td>
 			 	<td>'.$antri['namadokter'].'</td>
+			 	<td>'.$antri['statusantrian'].'</td>
 			</tr>';
 			}
 		?>
