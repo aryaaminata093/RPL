@@ -8,9 +8,18 @@ class Search(Resource):
 	def get(self, data):
 
 		hasil = db.session.query(Jadwal.id.label("jadwalId"), Jadwal.hari, Jadwal.jamMulai, Jadwal.jamSelesai, Dokter.id.label("dokterId"), Dokter.nama, Dokter.spesialis, Dokter.noTelepon).join(Jadwal, Jadwal.dokterId == Dokter.id).filter((Dokter.nama == data)|(Dokter.spesialis == data)|(Jadwal.hari==data)).all()
+		if data is None:
+			hasil = db.session.query(Jadwal.id.label("jadwalId"), Jadwal.hari, Jadwal.jamMulai, Jadwal.jamSelesai, Dokter.id.label("dokterId"), Dokter.nama, Dokter.spesialis, Dokter.noTelepon).join(Jadwal, Jadwal.dokterId == Dokter.id).all()
+			
 		# hasil = db.session.query(Jadwal.hari, Dokter.id.label("dokterId")).join(Jadwal, Jadwal.dokterId == Dokter.id).all()
 		# antrian = antrian.noAntrian
 		hasil = SearchSchema(many=True).dump(hasil).data
 
 		return {'status' : 'success', 'data': hasil}, 200
 		
+class SearchNone(Resource):
+	def get(self):
+		hasil = db.session.query(Jadwal.id.label("jadwalId"), Jadwal.hari, Jadwal.jamMulai, Jadwal.jamSelesai, Dokter.id.label("dokterId"), Dokter.nama, Dokter.spesialis, Dokter.noTelepon).join(Jadwal, Jadwal.dokterId == Dokter.id).all()
+		hasil = SearchSchema(many=True).dump(hasil).data
+
+		return {'status' : 'success', 'data': hasil}, 200

@@ -24,9 +24,11 @@ class Login(Resource):
 	def post(self):
 		json_data = request.get_json()
 		user = User.query.filter_by(email=json_data['email']).first()
-		authorized = user.check_password(json_data.get('password'))
-		if not authorized:
-			return {'error': 'Email or password invalid'}, 401
+		try:
+			
+			authorized = user.check_password(json_data.get('password'))
+		except Exception as e:
+			return {'status': 'Email atau password salah'}, 401
 
 		expires = datetime.timedelta(hours=1)
 		access_token = create_access_token(identity=str(user.id), expires_delta=expires)

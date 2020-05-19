@@ -5,8 +5,8 @@ from resources.Landing import Landing
 from resources.Profile import ProfileFetch, InputProfile, ProfileFetchUser
 from resources.Dokter import DokterFetch, InputDokter, DokterFetchPersonal
 from resources.Jadwal import JadwalFetch, InputJadwal
-from resources.Antrian import AntrianFetchAll, AntrianFetchDate, AntrianFetchJadwal, AntrianFetchLast, AntrianFetchProfile, AddAntrian, UpdateAntrian
-from resources.Search import Search
+from resources.Antrian import AntrianFetchAll, AntrianFetchDate, AntrianFetchJadwal, AntrianFetchLast, AntrianFetchProfile, AddAntrian, UpdateAntrian, AntrianFetchProfileAll
+from resources.Search import Search, SearchNone
 
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
@@ -32,12 +32,16 @@ api.add_resource(AntrianFetchAll, '/antrian/all')
 api.add_resource(AntrianFetchDate, '/antrian/tanggal/<tanggal>') 
 api.add_resource(AntrianFetchJadwal, '/antrian/jadwal/<jadwalId>')
 api.add_resource(AntrianFetchLast, '/antrian/terakhir/<jadwalId>/<tanggal>')
-api.add_resource(AntrianFetchProfile, '/antrian/pasien/<profileId>/<jadwalId>/<tanggal>')
+api.add_resource(AntrianFetchProfile, '/antrian/pasien/<jadwalId>/<tanggal>')
+api.add_resource(AntrianFetchProfileAll, '/antrian/pasien')
+
 
 api.add_resource(AddAntrian, '/antrian/add') 
 api.add_resource(UpdateAntrian, '/antrian/update') 
 
-api.add_resource(Search, '/search/<data>') 
+api.add_resource(Search, '/search/<data>')
+api.add_resource(SearchNone, '/search/') 
+
 
 
 

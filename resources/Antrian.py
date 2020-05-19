@@ -2,7 +2,7 @@ import datetime
 from flask import request, Response
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from .Model import db, Antrian, AntrianSchema, AntrianQuerySchema, AntrianAddSchema
+from .Model import db, Antrian, AntrianSchema, AntrianQuerySchema, AntrianAddSchema, User
 
 
 
@@ -30,9 +30,11 @@ class AntrianFetchJadwal(Resource):
 		return {'status' : 'success', 'data': antrian}, 200
 
 class AntrianFetchLast(Resource):
+	@jwt_required
 	def get(self,jadwalId, tanggal):
 		# jadwal = request.args['jadwal']
 		# tanggal = request.args['tanggal']
+
 
 		data, errors = AntrianQuerySchema().load({"jadwalId":jadwalId, "tanggal":tanggal})
 		if errors:
@@ -45,9 +47,13 @@ class AntrianFetchLast(Resource):
 		return {'status' : 'success', 'data': antrian}, 200
 
 class AntrianFetchProfile(Resource):
-	def get(self,profileId, jadwalId, tanggal):
+	@jwt_required
+	def get(self, jadwalId, tanggal):
 		# jadwal = request.args['jadwal']
 		# tanggal = request.args['tanggal']
+		user_id = get_jwt_identity()
+		profile = User.query.filter_by(id=user_id).first()
+		profileId = profile.profileId
 
 		data, errors = AntrianAddSchema().load({"jadwalId":jadwalId, "tanggal":tanggal, "profileId":profileId})
 		if errors:
@@ -59,17 +65,38 @@ class AntrianFetchProfile(Resource):
 
 		return {'status' : 'success', 'data': antrian}, 200
 
+class AntrianFetchProfileAll(Resource):
+	@jwt_required
+	def get(self):
+		user_id = get_jwt_identity()
+		profile = User.query.filter_by(id=user_id).first()
+		profileId = profile.profileId
+
+		# data, errors = AntrianAddSchema().load({"jadwalId":jadwalId, "tanggal":tanggal, "profileId":profileId})
+		# if errors:
+			# return {"status": "error", "data": errors}, 422
+
+		antrian = Antrian.query.filter((Antrian.profileId == profileId)).all()
+		# antrian = antrian.noAntrian
+		antrian = AntrianSchema(many=True).dump(antrian).data
+
+		return {'status' : 'success', 'data': antrian}, 200
 
 ###############################################################################
 # Input data
 
 class AddAntrian(Resource):
+	@jwt_required
 	def post(self):
+		user_id = get_jwt_identity()
+		profile = User.query.filter_by(id=user_id).first()
+		profileId = profile.profileId
+
 		json_data = request.get_json()
 		if not json_data:
 			return {'message': 'No input data provided'}, 400
 		# Validate and deserialize input
-		data, errors = AntrianAddSchema().load(json_data)
+		data, errors = AntrianAddSchema().load(json_data.update({"profileId":profileId}))
 		if errors:
 			return {"status": "error", "data": errors}, 422
 
@@ -87,7 +114,7 @@ class AddAntrian(Resource):
 			noAntrian = antrian_terakhir + 1
 			,tanggal = json_data['tanggal']
 			,jadwalId = json_data['jadwalId']
-			,profileId = json_data['profileId']
+			,profileId = data['profileId']
 			)
 		db.session.add(antrian)
 		db.session.commit()
