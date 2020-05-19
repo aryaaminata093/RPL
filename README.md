@@ -1,3 +1,4 @@
+![ini logo](iconrs.png)
 # LAPORAN PROJEK RPL
 ### A. Nama Aplikasi
 Nama aplikasi ini adalah RUMAH SAKIT
