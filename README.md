@@ -25,17 +25,18 @@ RUMAH SAKIT merupakan aplikasi berbasis android untuk Pasien di lingkup suatu ru
  1. Pasien menunggu antrian terlalu lama di rumah sakit
  2. Pasien harus datang langsung ke rumah sakit untuk mendaftar berobat atau berkonsultasi dengan dokter
  3. Pasien tidak mengetahui data Dokter yang ada di suatu rumah sakit
-### I. Use Case Description
+### I. Use Case Diagram
+![ucd](https://github.com/aryaaminata093/RPL/blob/coba_layout/ucd.png)
+
+### J. Use Case Description
  1. Fungsi antrian
+ ![fantri](https://github.com/aryaaminata093/RPL/blob/coba_layout/fantri.png)
  2. Fungsi CRUD data Pasien
+ ![fcrud](https://github.com/aryaaminata093/RPL/blob/coba_layout/fcrud.png)
  3. Fungsi search data dokter
+ ![fcari](https://github.com/aryaaminata093/RPL/blob/coba_layout/fcari.png)
  4. Fungsi buat janji
- 
-### J. Use Case Diagram
- 1. Fungsi antrian
- 2. Fungsi CRUD data Pasien
- 3. Fungsi search data dokter
- 4. Fungsi buat janji
+ ![fjanji](https://github.com/aryaaminata093/RPL/blob/coba_layout/fjanji.png)
  
 ### K. Activity Diagram
  1. Fungsi antrian
