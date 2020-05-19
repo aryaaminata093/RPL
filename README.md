@@ -29,24 +29,53 @@ RUMAH SAKIT merupakan aplikasi berbasis android untuk Pasien di lingkup suatu ru
 ![ucd](https://github.com/aryaaminata093/RPL/blob/coba_layout/ucd.png)
 
 ### J. Use Case Description
- 1. Fungsi antrian
+ 1. Fungsi antrian  
+ 
+ 
  ![fantri](https://github.com/aryaaminata093/RPL/blob/coba_layout/fantri.png)
+ 
  2. Fungsi CRUD data Pasien
+ 
+ 
  ![fcrud](https://github.com/aryaaminata093/RPL/blob/coba_layout/fcrud.png)
+ 
  3. Fungsi search data dokter
+ 
+ 
  ![fcari](https://github.com/aryaaminata093/RPL/blob/coba_layout/fcari.png)
+ 
  4. Fungsi buat janji
+ 
+ 
  ![fjanji](https://github.com/aryaaminata093/RPL/blob/coba_layout/fjanji.png)
  
 ### K. Activity Diagram
  1. Fungsi antrian
+  
+ 
+ ![antri](https://github.com/aryaaminata093/RPL/blob/coba_layout/antri.png)
+ 
  2. Fungsi CRUD data Pasien
+  
+ 
+ ![crud](https://github.com/aryaaminata093/RPL/blob/coba_layout/crud.png)
+ 
  3. Fungsi search data dokter
+  
+ 
+ ![cari](https://github.com/aryaaminata093/RPL/blob/coba_layout/search.png)
+ 
  4. Fungsi buat janji
+  
+ 
+ ![janji](https://github.com/aryaaminata093/RPL/blob/coba_layout/buatjanji.png)
+ 
  
 ### L. ERD
+![erd](https://github.com/aryaaminata093/RPL/blob/coba_layout/erd.png)
 
 ### M. Gantt Chart
+![gantt](https://github.com/aryaaminata093/RPL/blob/coba_layout/gantt.png)
 
 ### N. Hasil Implementasi Perangkat Lunak
 
