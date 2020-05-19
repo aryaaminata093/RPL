@@ -1,5 +1,5 @@
-![logo](https://github.com/aryaaminata093/RPL/blob/coba_layout/iconrs.png)
 # LAPORAN PROJEK RPL
+![logo](https://github.com/aryaaminata093/RPL/blob/coba_layout/iconrs.png)
 ### A. Nama Aplikasi
 Nama aplikasi ini adalah RUMAH SAKIT
 ### B. Nama Anggota Kelompok
