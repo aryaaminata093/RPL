@@ -23,7 +23,7 @@ RUMAH SAKIT merupakan aplikasi berbasis android untuk Pasien di lingkup suatu ru
 ### H. User Story
  1. Pasien menunggu antrian terlalu lama di rumah sakit
  2. Pasien harus datang langsung ke rumah sakit untuk mendaftar berobat atau berkonsultasi dengan dokter
- 3. Pasien tidak mengetahui data Dokter yang yang ada di suatu rumah sakit
+ 3. Pasien tidak mengetahui data Dokter yang ada di suatu rumah sakit
 ### I. Use Case Description
 
 ### J. Use Case Diagram
