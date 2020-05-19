@@ -201,6 +201,100 @@ cuman buat debugging sementara</li>
 
 </p>
 
+<li>
+	Liat antrian semua di <b>
+	/api/antrian/all</b></li>
+
+<p>
+
+	<b>
+	DATA yang dibutuhin</b>
+	: -<br>
+	<br>
+</p>
+
+<li>
+	Liat antrian sesuai tanggal di <b>
+	/api/antrian/tanggal/{tanggalnya}</b></li>
+
+<p>
+
+	<b>
+	contoh</b>
+	: /api/antrian/tanggal/2020-05-19/<br>
+	<br>
+</p>
+
+<li>
+	Liat antrian sesuai jadwal di <b>
+	/api/antrian/jadwal/{jadwalId}</b></li>
+
+<p>
+
+	<b>
+	contoh</b>
+	: /api/antrian/jadwal/1<br>
+	<br>
+</p>
+
+<li>
+	Liat antrian terakhir sesuai jadwal ama tanggal di <b>
+	/api/antrian/terakhir/{jadwalId}/{tanggal}</b></li>
+
+<p>
+
+	<b>
+	contoh</b>
+	: /api/antrian/terakhir/1/2020-05-19<br>
+	<br>
+</p>
+
+<li>
+	Liat antrian pasien sesuai jadwal ama tanggal di <b>
+	/api/antrian/pasien/{profileId}/{jadwalId}/{tanggal}</b></li>
+
+<p>
+
+	<b>
+	contoh</b>
+	: /api/antrian/pasien/1/1/2020-05-19<br>
+	<br>
+</p>
+
+<li>
+	tambah antrian di <b>
+	/antrian/add</b></li>
+
+<p>
+
+<b>
+	DATA yang dibutuhin</b>
+	: profileId, jadwalId, tanggal<br>
+	<br>
+
+	Contoh json : '{"tanggal":"2020-05-19", "profileId":"2", "jadwalId": "2"}'<br>
+
+	Contoh curl : curl http://127.0.0.1:5000/api/antrian/add -X 'POST' -H 'Content-Type: application/json' --data '{"tanggal":"2020-05-19", "profileId":"2", "jadwalId": "2"}'
+
+</p>
+
+<li>
+	update antrian di <b>
+	/antrian/update</b></li>
+
+<p>
+
+<b>
+	DATA yang dibutuhin</b>
+	: profileId, jadwalId, tanggal<br>
+	<br>
+
+	Contoh json : '{"tanggal":"2020-05-19", "profileId":"1", "jadwalId": "1"}'<br>
+
+	curl http://127.0.0.1:5000/api/antrian/update -X 'POST' -H 'Content-Type: application/json' --data '{"tanggal":"2020-05-19", "profileId":"1", "jadwalId": "1"}'
+
+
+</p>
 
 </ul>
 

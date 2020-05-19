@@ -5,8 +5,8 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from .Model import db, Jadwal, JadwalSchema
 
 # source = https://gist.github.com/hest/8798884
-def get_count(q):
-    return q.with_entities(func.count()).scalar()
+# def get_count(q):
+#     return q.with_entities(func.count()).scalar()
 
 class JadwalFetch(Resource):
 	# @jwt_required

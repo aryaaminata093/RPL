@@ -126,3 +126,56 @@ class JadwalSchema(ma.Schema):
 	jamMulai = fields.Time(required=True)
 	jamSelesai = fields.Time(required=True)
 	dokterId = fields.Integer(required=True)
+
+##############################################
+# Antrian
+
+class Antrian(db.Model):
+	__tablename__ = 'Antrian'
+
+	# id = db.Column(db.Integer, primary_key=True)
+	
+	noAntrian = db.Column(db.Integer, nullable=False)
+	tanggal = db.Column(db.Date, nullable=False)
+	status = db.Column(db.Boolean, default = False)
+	jadwalId = db.Column(db.Integer, db.ForeignKey('Jadwal.id'), nullable=False, primary_key = True)
+	profileId = db.Column(db.Integer, db.ForeignKey('Profiles.id'), nullable=False, primary_key = True)
+	
+	dokter = db.relationship('Jadwal', backref=db.backref('Antrian'))
+	profile = db.relationship('Profile', backref=db.backref('Antrian'))
+	
+	creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
+
+	def __init__(self, noAntrian, tanggal, profileId, jadwalId):
+		self.noAntrian = noAntrian
+		self.tanggal = tanggal
+		self.profileId = profileId
+		self.jadwalId = jadwalId
+	
+class AntrianSchema(ma.Schema):
+	# id = fields.Integer()
+	noAntrian = fields.Integer(required=True)
+	tanggal = fields.Date(required=True)
+	status = fields.Boolean(required=True)
+	jadwalId = fields.Integer(required=True)
+	profileId = fields.Integer(required=True)
+
+class AntrianQuerySchema(ma.Schema):
+	# id = fields.Integer()
+	# noAntrian = fields.Integer(required=True)
+	tanggal = fields.Date(required=True)
+	jadwalId = fields.Integer(required=True)
+
+class AntrianAddSchema(ma.Schema):
+	# id = fields.Integer()
+	# noAntrian = fields.Integer(required=True)
+	tanggal = fields.Date(required=True)
+	jadwalId = fields.Integer(required=True)
+	profileId = fields.Integer(required=True)
+
+class AntrianAddSchema(ma.Schema):
+	# id = fields.Integer()
+	# noAntrian = fields.Integer(required=True)
+	tanggal = fields.Date(required=True)
+	jadwalId = fields.Integer(required=True)
+	profileId = fields.Integer(required=True)
