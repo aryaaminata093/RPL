@@ -32,9 +32,17 @@ RUMAH SAKIT merupakan aplikasi berbasis android untuk Pasien di lingkup suatu ru
  4. Fungsi buat janji
  
 ### J. Use Case Diagram
-
+ 1. Fungsi antrian
+ 2. Fungsi CRUD data Pasien
+ 3. Fungsi search data dokter
+ 4. Fungsi buat janji
+ 
 ### K. Activity Diagram
-
+ 1. Fungsi antrian
+ 2. Fungsi CRUD data Pasien
+ 3. Fungsi search data dokter
+ 4. Fungsi buat janji
+ 
 ### L. ERD
 
 ### M. Gantt Chart
