@@ -1,4 +1,4 @@
-![ini logo](iconrs.png)
+![ini logo](https://github.com/aryaaminata093/RPL.git/iconrs.png)
 # LAPORAN PROJEK RPL
 ### A. Nama Aplikasi
 Nama aplikasi ini adalah RUMAH SAKIT
