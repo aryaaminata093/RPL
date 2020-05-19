@@ -2,7 +2,7 @@ import datetime
 from flask import request, Response
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from .Model import db, Antrian, AntrianSchema, AntrianQuerySchema, AntrianAddSchema, User
+from .Model import db, Antrian, AntrianSchema, AntrianQuerySchema, AntrianAddSchema, User, Jadwal, Profile, Dokter, AntrianSchemaAll
 
 
 
@@ -10,8 +10,8 @@ class AntrianFetchAll(Resource):
 	# @jwt_required
 	def get(self):
 		antrian = Antrian.query.all()
-		antrian = AntrianSchema(many=True).dump(antrian).data
-
+		antrian = db.session.query(Antrian.noAntrian, Antrian.tanggal, Antrian.profileId, Antrian.jadwalId, Dokter.nama.label("namaDokter"), Profile.nama.label("namaPasien")).select_from(Antrian).join(Jadwal, Antrian.jadwalId == Jadwal.id).join(Profile, Antrian.profileId == Profile.id).join(Dokter, Jadwal.dokterId == Dokter.id).all()
+		antrian = AntrianSchemaAll(many=True).dump(antrian).data
 		return {'status' : 'success', 'data': antrian}, 200
 
 class AntrianFetchDate(Resource):

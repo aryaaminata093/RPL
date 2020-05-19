@@ -172,6 +172,15 @@ class AntrianAddSchema(ma.Schema):
 	tanggal = fields.Date(required=True)
 	jadwalId = fields.Integer(required=True)
 	profileId = fields.Integer(required=True)
+class AntrianSchemaAll(ma.Schema):
+	# id = fields.Integer()
+	noAntrian = fields.Integer(required=True)
+	tanggal = fields.Date(required=True)
+	status = fields.Boolean(required=True)
+	jadwalId = fields.Integer(required=True)
+	profileId = fields.Integer(required=True)
+	namaDokter = fields.String(required=True)
+	namaPasien = fields.String(required=True)
 
 ##############################################
 # Search
