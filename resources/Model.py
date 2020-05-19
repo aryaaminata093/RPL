@@ -179,3 +179,19 @@ class AntrianAddSchema(ma.Schema):
 	tanggal = fields.Date(required=True)
 	jadwalId = fields.Integer(required=True)
 	profileId = fields.Integer(required=True)
+
+##############################################
+# Search
+
+class SearchSchema(ma.Schema):
+	# id = fields.Integer()
+	jadwalId = fields.Integer(required=True)
+	dokterId = fields.Integer(required=True)
+
+	hari = fields.String(required=True)
+	jamMulai = fields.Time(required=True)
+	jamSelesai = fields.Time(required=True)
+	# dokterId = fields.Integer(required=True)
+	nama = fields.String(required=True)
+	spesialis = fields.String(required=True)
+	noTelepon = fields.String(required=True)
