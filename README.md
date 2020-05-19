@@ -1,4 +1,3 @@
-![ini logo](https://github.com/aryaaminata093/RPL.git/iconrs.png)
 # LAPORAN PROJEK RPL
 ### A. Nama Aplikasi
 Nama aplikasi ini adalah RUMAH SAKIT
@@ -19,10 +18,8 @@ Nama aplikasi ini adalah RUMAH SAKIT
 ### F. Deskripsi Perangkat Lunak
 RUMAH SAKIT merupakan aplikasi berbasis android untuk Pasien di lingkup suatu rumah sakit yang memiliki fungsi umum untuk mempermudah proses administrasi antrian saat Pasien akan berobat atau berkonsultasi dengan Dokter. Dalam aplikasi ini, Pasien dapat melihat nomor antriannya dan melihat nomor antrian yang sedang berlangsung dan diikuti oleh Pasien. Selain itu, Pasien juga dapat membuat janji untuk berobat atau berkonsultasi dengan Dokter melalui aplikasi. Aplikasi ini juga disambungkan dengan sistem administrasi dari rumah sakit tersebut.
 ### G. Analisis User (User Profile)
- 1. Pasien
-    Pasien merupakan masyarakat yang akan berobat atau berkonsultasi dengan Dokter di suatu rumah sakit dengan syarat orang tersebut         sudah terdaftar sebagai Pasien di rumah sakit tersebut. Pasien adalah pengguna utama dari aplikasi ini.
- 2. Admin
-    Admin merupakan orang yang memiliki akses ke seluruh data lalu menambahkan, mengubah, menghapus data yang ada dalam aplikasi.
+1. Pasien : merupakan masyarakat yang akan berobat atau berkonsultasi dengan Dokter di suatu rumah sakit dengan syarat orang tersebut sudah terdaftar sebagai Pasien di rumah sakit tersebut. Pasien adalah pengguna utama dari aplikasi ini
+2. Admin : merupakan orang yang memiliki akses ke seluruh data lalu menambahkan, mengubah, menghapus data yang ada dalam aplikasi
 ### H. User Story
  1. Pasien menunggu antrian terlalu lama di rumah sakit
  2. Pasien harus datang langsung ke rumah sakit untuk mendaftar berobat atau berkonsultasi dengan dokter
