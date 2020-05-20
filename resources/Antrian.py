@@ -10,7 +10,7 @@ class AntrianFetchAll(Resource):
 	# @jwt_required
 	def get(self):
 		antrian = Antrian.query.all()
-		antrian = db.session.query(Antrian.noAntrian, Antrian.tanggal, Antrian.profileId, Antrian.jadwalId, Dokter.nama.label("namaDokter"), Profile.nama.label("namaPasien")).select_from(Antrian).join(Jadwal, Antrian.jadwalId == Jadwal.id).join(Profile, Antrian.profileId == Profile.id).join(Dokter, Jadwal.dokterId == Dokter.id).all()
+		antrian = db.session.query(Antrian.noAntrian, Antrian.tanggal, Antrian.profileId, Antrian.jadwalId, Antrian.status, Dokter.nama.label("namaDokter"), Profile.nama.label("namaPasien")).select_from(Antrian).join(Jadwal, Antrian.jadwalId == Jadwal.id).join(Profile, Antrian.profileId == Profile.id).join(Dokter, Jadwal.dokterId == Dokter.id).all()
 		antrian = AntrianSchemaAll(many=True).dump(antrian).data
 		return {'status' : 'success', 'data': antrian}, 200
 
@@ -26,6 +26,19 @@ class AntrianFetchJadwal(Resource):
 	def get(self,jadwalId):
 		antrian = Antrian.query.filter_by(jadwalId=jadwalId)
 		antrian = AntrianSchema(many=True).dump(antrian).data
+
+		return {'status' : 'success', 'data': antrian}, 200
+class AntrianFetchAllAt(Resource):
+	def get(self,jadwalId, tanggal):
+		# jadwal = request.args['jadwal']
+		# tanggal = request.args['tanggal']
+
+		data, errors = AntrianQuerySchema().load({"jadwalId":jadwalId, "tanggal":tanggal})
+		if errors:
+			return {"status": "error", "data": errors}, 422
+
+		antrian = db.session.query(Antrian.noAntrian, Antrian.tanggal, Antrian.profileId, Antrian.jadwalId, Antrian.status, Dokter.nama.label("namaDokter"), Profile.nama.label("namaPasien")).select_from(Antrian).join(Jadwal, Antrian.jadwalId == Jadwal.id).join(Profile, Antrian.profileId == Profile.id).join(Dokter, Jadwal.dokterId == Dokter.id).filter((Antrian.jadwalId == data["jadwalId"]), (Antrian.tanggal == data["tanggal"])).all()
+		antrian = AntrianSchemaAll(many=True).dump(antrian).data
 
 		return {'status' : 'success', 'data': antrian}, 200
 
