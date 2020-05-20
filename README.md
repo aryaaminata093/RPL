@@ -78,7 +78,7 @@ RUMAH SAKIT merupakan aplikasi berbasis android untuk Pasien di lingkup suatu ru
 ![gantt](https://github.com/aryaaminata093/RPL/blob/coba_layout/gantt.png)
 
 ### N. Hasil Implementasi Perangkat Lunak
-![a](https://github.com/aryaaminata093/RPL/blob/coba_layout/ss/antrian.jpg)
+![a](https://github.com/aryaaminata093/RPL/blob/coba_layout/ss/loading.jpg)
 ![b](https://github.com/aryaaminata093/RPL/blob/coba_layout/ss/login.jpg)
 ![c](https://github.com/aryaaminata093/RPL/blob/coba_layout/ss/register.jpg)
 ![d](https://github.com/aryaaminata093/RPL/blob/coba_layout/ss/antrian.jpg)
@@ -87,7 +87,9 @@ RUMAH SAKIT merupakan aplikasi berbasis android untuk Pasien di lingkup suatu ru
 ![g](https://github.com/aryaaminata093/RPL/blob/coba_layout/ss/janji.jpg)
 ![h](https://github.com/aryaaminata093/RPL/blob/coba_layout/ss/search.jpg)
 
-https://antrumahsakit.000webhostapp.com/antrian.php
+https://antrumahsakit.000webhostapp.com/antrian.php (untuk next antrian)
+
+![i](https://github.com/aryaaminata093/RPL/blob/coba_layout/ss/web.png)
 
 
 
