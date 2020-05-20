@@ -49,27 +49,20 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tentukan Hari  "
                 android:textColor="@color/black"
                 android:textSize="20dp"/>
-            <TextView
+            <DatePicker
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text=": "
-                android:textSize="20dp"/>
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@drawable/bg_wht_round"
-                android:id="@+id/listItem"
-                android:entries="@array/daftar_hari"
-                android:padding="15dp">
-            </Spinner>
+                android:id="@+id/set_kalender"
+                android:padding="1dp">
+            </DatePicker>
         </LinearLayout>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_makejanji"

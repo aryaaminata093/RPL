@@ -15,6 +15,8 @@ import com.nyoba.loginregis.model.BaseResponse;
 import com.nyoba.loginregis.network.config.Config;
 import com.nyoba.loginregis.network.interfaces.RegistrasiInterface;
 
+import java.util.regex.Pattern;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,6 +27,19 @@ public class RegistrasiActivity extends AppCompatActivity {
     EditText nama,email,password;
     Button btn_regis;
     ProgressDialog pd;
+
+    public static boolean isValid(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
 
     public void pdh_login(View view) {
         Intent i = new Intent(this, LoginActivity.class);
@@ -53,6 +68,11 @@ public class RegistrasiActivity extends AppCompatActivity {
                 String spassword = password.getText().toString();
                 if(snama.matches("")||semail.matches("")||spassword.matches("")){
                     Toast.makeText(RegistrasiActivity.this, "Kolom tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                } else if(!isValid(semail)){
+                    Toast.makeText(RegistrasiActivity.this,"Email not valid",Toast.LENGTH_SHORT).show();
+                    password.setText("");
+                } else if(spassword.length() < 8){
+                    Toast.makeText(RegistrasiActivity.this, "Password minimal 8", Toast.LENGTH_SHORT).show();
                 } else {
                     pd.setMessage("Sending Data...");
                     pd.setCancelable(false);

@@ -48,6 +48,7 @@ public class AdapterCari extends RecyclerView.Adapter<AdapterCari.ViewHolder> {
                 TextView dialogname= (TextView) mydialog.findViewById(R.id.dianama);
                 TextView dialogspesial= (TextView) mydialog.findViewById(R.id.diaspesial);
                 String dialogid = dokterModels.get(vHolder.getAdapterPosition()).getIddoc();
+                String idjadwal = dokterModels.get(vHolder.getAdapterPosition()).getIdjadwal();
                 Button dialogbutton = (Button) mydialog.findViewById(R.id.buatjanji);
 
                 dialogname.setText(dokterModels.get(vHolder.getAdapterPosition()).getNamadoc());
@@ -64,6 +65,7 @@ public class AdapterCari extends RecyclerView.Adapter<AdapterCari.ViewHolder> {
                         intent.putExtra("did",dialogid);
                         intent.putExtra("namadokter",nama);
                         intent.putExtra("spesialis",spesial);
+                        intent.putExtra("idjadwal",idjadwal);
                         context.startActivity(intent);
                     }
                 });
@@ -79,6 +81,7 @@ public class AdapterCari extends RecyclerView.Adapter<AdapterCari.ViewHolder> {
     public void onBindViewHolder(@NonNull AdapterCari.ViewHolder holder, int position) {
         holder.doc_nama.setText(dokterModels.get(position).getNamadoc());
         holder.doc_spesial.setText(dokterModels.get(position).getSpesialis());
+        holder.jampraktek.setText(dokterModels.get(position).getJam());
     }
 
     @Override
@@ -88,7 +91,7 @@ public class AdapterCari extends RecyclerView.Adapter<AdapterCari.ViewHolder> {
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView doc_nama,doc_spesial;
+        private TextView doc_nama,doc_spesial,jampraktek;
         private CardView peritem;
 
         public ViewHolder(@NonNull View itemView) {
@@ -97,6 +100,7 @@ public class AdapterCari extends RecyclerView.Adapter<AdapterCari.ViewHolder> {
             peritem = (CardView) itemView.findViewById(R.id.per_item);
             doc_nama = (TextView) itemView.findViewById(R.id.doc_nama);
             doc_spesial = (TextView) itemView.findViewById(R.id.doc_spesial);
+            jampraktek = (TextView) itemView.findViewById(R.id.jampraktek);
         }
     }
 }

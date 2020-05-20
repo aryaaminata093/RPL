@@ -14,5 +14,6 @@ public interface lihatjanji {
     @FormUrlEncoded
     @POST("lihatjanji.php")
     Call<ModelJanji> lihat(
-            @Field("pasid") String pid);
+            @Field("pasid") String pid,
+            @Field("tglantrian") String date);
 }

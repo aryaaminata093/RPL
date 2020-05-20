@@ -19,6 +19,12 @@ public class DokterModel {
     @SerializedName("spesialis")
     @Expose
     private String spesialis;
+    @SerializedName("idjadwal")
+    @Expose
+    private String idjadwal;
+    @SerializedName("jam")
+    @Expose
+    private String jam;
 
     public Integer getSuccess() {
         return success;
@@ -58,5 +64,21 @@ public class DokterModel {
 
     public void setSpesialis(String spesialis) {
         this.spesialis = spesialis;
+    }
+
+    public String getIdjadwal() {
+        return idjadwal;
+    }
+
+    public void setIdjadwal(String idjadwal) {
+        this.idjadwal = idjadwal;
+    }
+
+    public String getJam() {
+        return jam;
+    }
+
+    public void setJam(String jam) {
+        this.jam = jam;
     }
 }

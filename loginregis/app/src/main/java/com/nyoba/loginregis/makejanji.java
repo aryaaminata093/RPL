@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ import com.nyoba.loginregis.model.ModelJanji;
 import com.nyoba.loginregis.network.config.Config;
 import com.nyoba.loginregis.network.interfaces.JanjiInterface;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.TimeoutException;
 
@@ -28,10 +31,11 @@ import retrofit2.Response;
 public class makejanji extends AppCompatActivity {
 
     sessionManager sessionManager;
+    int hari,bulan,tahun;
     String did,dname,dspesi;
-    String pasid,harijanji;
+    String pasid,idjadwal,tglantrian;
     TextView namadoc, spesialdoc;
-    EditText hari;
+    DatePicker datePicker;
     Button btnmakejanji;
     ProgressDialog pd;
 
@@ -48,13 +52,14 @@ public class makejanji extends AppCompatActivity {
         did = extras.getString("did");
         dname = extras.getString("namadokter");
         dspesi = extras.getString("spesialis");
-        Log.d("cek in make janji","Response :" + did+" "+pasid);
+        idjadwal = extras.getString("idjadwal");
+        Log.d("cek in make janji","Response :" + did+" "+pasid+" "+idjadwal);
 
         namadoc = (TextView) findViewById(R.id.mdocnama);
         spesialdoc = (TextView) findViewById(R.id.mdocspesial);
+        datePicker = findViewById(R.id.set_kalender);
 
         btnmakejanji = (Button) findViewById(R.id.btn_makejanji);
-        final Spinner hari = findViewById(R.id.listItem);
 
         namadoc.setText(dname);
         spesialdoc.setText(dspesi);
@@ -64,12 +69,25 @@ public class makejanji extends AppCompatActivity {
         btnmakejanji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                harijanji = hari.getSelectedItem().toString();
+                StringBuilder date = new StringBuilder();
+                SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+                hari = datePicker.getDayOfMonth();
+                bulan = datePicker.getMonth()+1;
+                tahun = datePicker.getYear();
+                date.append(tahun).append("-").append(bulan).append("-").append(hari);
+                tglantrian = date.toString();
+                Date d_name = new Date(tahun,bulan-1,hari-1);
+                String dayOfTheWeek = sdf.format(d_name);
+                Log.d("cek",tglantrian+dayOfTheWeek);
+
+                if(dayOfTheWeek.equals("Sunday") || dayOfTheWeek.equals("Saturday")){
+                    Toast.makeText(makejanji.this,"Tidak dapat membuat janji pada hari sabtu dan minggu",Toast.LENGTH_SHORT).show();
+                } else {
                 pd.setMessage("Sending Data...");
                 pd.setCancelable(false);
                 pd.show();
 
-                Call<ModelJanji> set = janji.buatjanji(pasid,did,harijanji);
+                Call<ModelJanji> set = janji.buatjanji(pasid,idjadwal,tglantrian);
                 set.enqueue(new Callback<ModelJanji>() {
                     @Override
                     public void onResponse(Call<ModelJanji> call, Response<ModelJanji> response) {
@@ -84,8 +102,6 @@ public class makejanji extends AppCompatActivity {
                             startActivity(i);
                         } else if(success == 2) {
                             Toast.makeText(makejanji.this, "Anda sudah ada janji", Toast.LENGTH_SHORT).show();
-                        } else if(success == 3) {
-                            Toast.makeText(makejanji.this, "Dokter sudah ada janji", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(makejanji.this, "Gagal", Toast.LENGTH_SHORT).show();
                         }
@@ -105,8 +121,10 @@ public class makejanji extends AppCompatActivity {
 
                 //Toast.makeText(makejanji.this,"data "+did+" "+pasid+" "+harijanji,Toast.LENGTH_SHORT).show();
             }
+            }
         });
 
     }
+
 
 }

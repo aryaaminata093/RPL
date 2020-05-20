@@ -1,5 +1,6 @@
 package com.nyoba.loginregis.network.interfaces;
-import com.nyoba.loginregis.model.BaseResponse;
+
+import com.nyoba.loginregis.model.HomeModel;
 import com.nyoba.loginregis.model.ModelJanji;
 
 import retrofit2.Call;
@@ -7,13 +8,10 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
-public interface JanjiInterface {
-
+public interface antrianskrng {
     @FormUrlEncoded
-    @POST("buatantrian.php")
-    Call<ModelJanji> buatjanji(
-            @Field("idpasien") String idpassien,
+    @POST("lihatantrianskrng.php")
+    Call<HomeModel> lihatno(
             @Field("idjadwal") String idjadwal,
-            @Field("tglantrian") String tglantrian);
-
+            @Field("tanggal") String tanggal);
 }

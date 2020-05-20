@@ -21,7 +21,10 @@ import com.nyoba.loginregis.network.config.Config;
 import com.nyoba.loginregis.network.interfaces.CariInterface;
 import com.nyoba.loginregis.network.interfaces.lihatjanji;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,7 +39,7 @@ public class janji extends Fragment {
     Button btnsrc;
     sessionManager sessionManager;
     ProgressDialog pd;
-    TextView janjihari,namadoc,spesialdoc;
+    TextView antrian,namadoc,spesialdoc,jam,tanggal;
 
     public static janji newInstance(String param1, String param2) {
         janji fragment = new janji();
@@ -59,12 +62,20 @@ public class janji extends Fragment {
         jcari = (EditText) janji.findViewById(R.id.carilah);
         btnsrc = (Button) janji.findViewById(R.id.btn_src);
 
-        janjihari = (TextView) janji.findViewById(R.id.doc_harijan);
+        tanggal = (TextView) janji.findViewById(R.id.sekarang);
+        jam = (TextView) janji.findViewById(R.id.jam);
+        antrian = (TextView) janji.findViewById(R.id.doc_antrian);
         namadoc = (TextView) janji.findViewById(R.id.doc_namajan);
         spesialdoc = (TextView) janji.findViewById(R.id.doc_spesialjan);
 
-        search(pid);
-
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = df.format(c);
+        Log.d("cek","Response :" + formattedDate);
+        search(pid,formattedDate);
+        SimpleDateFormat baru = new SimpleDateFormat("dd-MM-yyyy");
+        String baruloh = baru.format(c);
+        tanggal.setText(baruloh);
         btnsrc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,20 +93,21 @@ public class janji extends Fragment {
     }
 
 
-    private void search(String pidi) {
+    private void search(String pidi, String date) {
         pd.setMessage("Mencari..");
         pd.setCancelable(false);
         pd.show();
         lihatjanji cari = Config.getClient().create(lihatjanji.class);
 
-        Call<ModelJanji> call = cari.lihat(pidi);
+        Call<ModelJanji> call = cari.lihat(pidi,date);
         call.enqueue(new Callback<ModelJanji>() {
             @Override
             public void onResponse(Call<ModelJanji> call, Response<ModelJanji> response) {
                 //Log.d("cek","Response :" + response.body().getHarijanji());
-                janjihari.setText(response.body().getHarijanji());
+                antrian.setText(response.body().getNoantrian());
                 namadoc.setText(response.body().getNamadokter());
                 spesialdoc.setText(response.body().getSpesialis());
+                jam.setText(response.body().getJam());
                 pd.hide();
             }
 

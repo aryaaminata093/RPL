@@ -19,6 +19,7 @@ import com.nyoba.loginregis.network.config.Config;
 import com.nyoba.loginregis.network.interfaces.LoginInterface;
 
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,6 +52,18 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(a);
 
     }
+    public static boolean isValid(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,59 +82,68 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pd.setMessage("Login...");
-                pd.setCancelable(false);
-                pd.show();
-
                 String semail= email.getText().toString();
                 String spassword = password.getText().toString();
-
-                Call<BaseResponse> login = lgin.login(semail,spassword);
-                login.enqueue(new Callback<BaseResponse>() {
-                    @Override
-                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                        Log.d("cek","Response :" + response.body().getEmail());
-
-
-                        pid = response.body().getId();
-                        pemail = response.body().getEmail();
-                        pnama = response.body().getNama();
-                        ptmptlhr = response.body().getTmptlhr();
-                        ptgllhr = response.body().getTgllhr();
-                        palamat = response.body().getAlamat();
-                        pjk = response.body().getJk();
-                        pgoldar = response.body().getGoldar();
+                if(!isValid(semail)){
+                    Toast.makeText(LoginActivity.this,"Email not valid",Toast.LENGTH_SHORT).show();
+                    password.setText("");
+                } else if(spassword.length() < 8){
+                    Toast.makeText(LoginActivity.this, "Password minimal 8", Toast.LENGTH_SHORT).show();
+                } else {
+                    pd.setMessage("Login...");
+                    pd.setCancelable(false);
+                    pd.show();
 
 
-                        sessionManager.createSession(pnama,pemail,palamat,ptmptlhr,ptgllhr,pjk,pgoldar,pid);
+                    Call<BaseResponse> login = lgin.login(semail,spassword);
+                    login.enqueue(new Callback<BaseResponse>() {
+                        @Override
+                        public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                            Log.d("cek","Response :" + response.body().getEmail());
 
-                        pd.hide();
-                        int success = response.body().getSuccess();
 
-                        if ( success == 1) {
-                            Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                            i.putExtra("pid", pid);
-                            String message = pid;
-                            startActivity(i);
-                        } else if( success == 2) {
-                            Toast.makeText(LoginActivity.this, "password salah", Toast.LENGTH_SHORT).show();
-                        } else if( success == 404){
-                            Toast.makeText(LoginActivity.this, "email belum terdaftar", Toast.LENGTH_SHORT).show();
+                            pid = response.body().getId();
+                            pemail = response.body().getEmail();
+                            pnama = response.body().getNama();
+                            ptmptlhr = response.body().getTmptlhr();
+                            ptgllhr = response.body().getTgllhr();
+                            palamat = response.body().getAlamat();
+                            pjk = response.body().getJk();
+                            pgoldar = response.body().getGoldar();
+
+
+                            sessionManager.createSession(pnama,pemail,palamat,ptmptlhr,ptgllhr,pjk,pgoldar,pid);
+
+                            pd.hide();
+                            int success = response.body().getSuccess();
+
+                            if ( success == 1) {
+                                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                                i.putExtra("pid", pid);
+                                String message = pid;
+                                startActivity(i);
+                            } else if( success == 2) {
+                                Toast.makeText(LoginActivity.this, "password salah", Toast.LENGTH_SHORT).show();
+                                password.setText("");
+                            } else if( success == 404){
+                                Toast.makeText(LoginActivity.this, "email belum terdaftar", Toast.LENGTH_SHORT).show();
+                                password.setText("");
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<BaseResponse> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<BaseResponse> call, Throwable t) {
 
-                        Log.d("cek","Fail : Gagal mengirim data");
-                        System.out.println("onFailure"+call);
-                        t.printStackTrace();
-                        pd.hide();
+                            Log.d("cek","Fail : Gagal mengirim data");
+                            System.out.println("onFailure"+call);
+                            t.printStackTrace();
+                            pd.hide();
 
-                        Toast.makeText(LoginActivity.this, "Error mengirim!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Error mengirim!", Toast.LENGTH_SHORT).show();
 
-                    }
-                });
+                        }
+                    });
+                }
             }
         });
     }

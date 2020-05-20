@@ -10,24 +10,21 @@ public class ModelJanji {
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("id_pas")
-    @Expose
-    private String idPas;
-    @SerializedName("namapasien")
-    @Expose
-    private String namapasien;
     @SerializedName("id_doc")
     @Expose
     private String idDoc;
     @SerializedName("namadokter")
     @Expose
     private String namadokter;
-    @SerializedName("harijanji")
+    @SerializedName("jam")
     @Expose
-    private String harijanji;
+    private String jam;
     @SerializedName("spesialis")
     @Expose
     private String spesialis;
+    @SerializedName("noantrian")
+    @Expose
+    private String noantrian;
 
     public Integer getSuccess() {
         return success;
@@ -43,22 +40,6 @@ public class ModelJanji {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getIdPas() {
-        return idPas;
-    }
-
-    public void setIdPas(String idPas) {
-        this.idPas = idPas;
-    }
-
-    public String getNamapasien() {
-        return namapasien;
-    }
-
-    public void setNamapasien(String namapasien) {
-        this.namapasien = namapasien;
     }
 
     public String getIdDoc() {
@@ -77,12 +58,12 @@ public class ModelJanji {
         this.namadokter = namadokter;
     }
 
-    public String getHarijanji() {
-        return harijanji;
+    public String getJam() {
+        return jam;
     }
 
-    public void setHarijanji(String harijanji) {
-        this.harijanji = harijanji;
+    public void setJam(String jam) {
+        this.jam = jam;
     }
 
     public String getSpesialis() {
@@ -92,4 +73,13 @@ public class ModelJanji {
     public void setSpesialis(String spesialis) {
         this.spesialis = spesialis;
     }
+
+    public String getNoantrian() {
+        return noantrian;
+    }
+
+    public void setNoantrian(String noantrian) {
+        this.noantrian = noantrian;
+    }
+
 }
