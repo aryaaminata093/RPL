@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">Rumah Sakit</string>
-    <string name="title_activity_dasboard">dasboard</string>
-    <string name="title_home">Antrian</string>
-    <string name="title_dashboard">Janji</string>
-    <string name="title_notifications">Profil</string>
-    <string name="title_activity_mainmenu">mainmenu</string>
-</resources>

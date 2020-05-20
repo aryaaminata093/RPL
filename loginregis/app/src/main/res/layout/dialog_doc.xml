@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    >
+    
+    <LinearLayout
+        android:layout_marginTop="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/dianama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="90dp"
+            />
+        <TextView
+            android:id="@+id/diaspesial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spesialis"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <Button
+            android:id="@+id/buatjanji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorSecond"
+            android:text="Buat Janji"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginTop="80dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@mipmap/personicon"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        />
+    
+</RelativeLayout>
