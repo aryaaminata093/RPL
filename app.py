@@ -33,8 +33,8 @@ api.add_resource(AntrianFetchAllAt, '/antrian/at/<jadwalId>/<tanggal>')
 
 api.add_resource(AntrianFetchDate, '/antrian/tanggal/<tanggal>') 
 api.add_resource(AntrianFetchJadwal, '/antrian/jadwal/<jadwalId>')
-api.add_resource(AntrianFetchLast, '/antrian/terakhir/<jadwalId>/<tanggal>')
-api.add_resource(AntrianFetchProfile, '/antrian/pasien/<jadwalId>/<tanggal>')
+api.add_resource(AntrianFetchLast, '/antrian/terakhir/<tanggal>')
+api.add_resource(AntrianFetchProfile, '/antrian/pasien/<tanggal>')
 api.add_resource(AntrianFetchProfileAll, '/antrian/pasien')
 
 

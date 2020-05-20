@@ -44,10 +44,15 @@ class AntrianFetchAllAt(Resource):
 
 class AntrianFetchLast(Resource):
 	@jwt_required
-	def get(self,jadwalId, tanggal):
+	def get(self,tanggal):
 		# jadwal = request.args['jadwal']
 		# tanggal = request.args['tanggal']
+		user_id = get_jwt_identity()
+		profile = User.query.filter_by(id=user_id).first()
+		profileId = profile.profileId
 
+		jadwalId = Antrian.query.filter((Antrian.profileId == profileId), (Antrian.tanggal == tanggal)).first()
+		jadwalId = jadwalId.jadwalId
 
 		data, errors = AntrianQuerySchema().load({"jadwalId":jadwalId, "tanggal":tanggal})
 		if errors:
@@ -61,18 +66,15 @@ class AntrianFetchLast(Resource):
 
 class AntrianFetchProfile(Resource):
 	@jwt_required
-	def get(self, jadwalId, tanggal):
+	def get(self,  tanggal):
 		# jadwal = request.args['jadwal']
 		# tanggal = request.args['tanggal']
 		user_id = get_jwt_identity()
 		profile = User.query.filter_by(id=user_id).first()
 		profileId = profile.profileId
 
-		data, errors = AntrianAddSchema().load({"jadwalId":jadwalId, "tanggal":tanggal, "profileId":profileId})
-		if errors:
-			return {"status": "error", "data": errors}, 422
-
-		antrian = Antrian.query.filter((Antrian.profileId == data["profileId"]),(Antrian.jadwalId == data["jadwalId"]), (Antrian.tanggal == data["tanggal"])).first()
+		
+		antrian = Antrian.query.filter((Antrian.profileId == profileId), (Antrian.tanggal == tanggal)).first()
 		antrian = antrian.noAntrian
 		# antrian = AntrianSchema().dump(antrian).data
 
