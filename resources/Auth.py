@@ -25,8 +25,9 @@ class Login(Resource):
 		json_data = request.get_json()
 		user = User.query.filter_by(email=json_data['email']).first()
 		try:
-			
 			authorized = user.check_password(json_data.get('password'))
+			if not authorized:
+				return {'status': 'Email atau password salah'}, 401
 		except Exception as e:
 			return {'status': 'Email atau password salah'}, 401
 
