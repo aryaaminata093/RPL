@@ -72,10 +72,10 @@ RUMAH SAKIT merupakan aplikasi berbasis android untuk Pasien di lingkup suatu ru
  
  
 ### L. ERD
-![erd](https://github.com/aryaaminata093/RPL/blob/coba_layout/erd.png)
+![erd](https://github.com/aryaaminata093/RPL/blob/coba_layout/erd%20(2).png)
 
 ### M. Gantt Chart
-![gantt](https://github.com/aryaaminata093/RPL/blob/coba_layout/gantt.png)
+![gantt](https://github.com/aryaaminata093/RPL/blob/coba_layout/gnt.png)
 
 ### N. Hasil Implementasi Perangkat Lunak
 ![a](https://github.com/aryaaminata093/RPL/blob/coba_layout/ss/loading.jpg)
